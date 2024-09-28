@@ -195,3 +195,101 @@ func main() {
 	fmt.Println(todoList)
 }
 ```
+
+## HTTP Endpoints
+
+The following HTTP endpoints are available for interacting with the todo items:
+
+### GET /todos/{id}
+
+Retrieve a todo item by its ID.
+
+#### Request
+
+- Method: GET
+- URL: `/todos/{id}`
+
+#### Response
+
+- Status: 200 OK
+- Body: JSON representation of the todo item
+
+#### Example
+
+```sh
+curl -X GET http://localhost:8080/todos/1
+```
+
+### POST /todos
+
+Create a new todo item.
+
+#### Request
+
+- Method: POST
+- URL: `/todos`
+- Body: JSON representation of the new todo item
+
+#### Response
+
+- Status: 201 Created
+- Body: JSON representation of the created todo item
+
+#### Example
+
+```sh
+curl -X POST http://localhost:8080/todos -d '{
+  "ID": 1,
+  "Title": "Buy groceries",
+  "Description": "Milk, Bread, Eggs",
+  "DueDate": "2023-12-31T23:59:59Z",
+  "Priority": 1,
+  "Tags": ["shopping", "errands"]
+}' -H "Content-Type: application/json"
+```
+
+### PUT /todos/{id}
+
+Update an existing todo item.
+
+#### Request
+
+- Method: PUT
+- URL: `/todos/{id}`
+- Body: JSON representation of the updated todo item
+
+#### Response
+
+- Status: 200 OK
+- Body: JSON representation of the updated todo item
+
+#### Example
+
+```sh
+curl -X PUT http://localhost:8080/todos/1 -d '{
+  "Title": "Buy groceries and more",
+  "Description": "Milk, Bread, Eggs, and Butter",
+  "DueDate": "2024-01-01T23:59:59Z",
+  "Priority": 2,
+  "Tags": ["shopping", "errands", "important"]
+}' -H "Content-Type: application/json"
+```
+
+### DELETE /todos/{id}
+
+Delete a todo item by its ID.
+
+#### Request
+
+- Method: DELETE
+- URL: `/todos/{id}`
+
+#### Response
+
+- Status: 204 No Content
+
+#### Example
+
+```sh
+curl -X DELETE http://localhost:8080/todos/1
+```
