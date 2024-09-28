@@ -1,4 +1,4 @@
-package sapi
+package main
 
 import (
 	"sync"
@@ -106,5 +106,8 @@ func (tl *TodoList) DeleteTodoItem(id int) {
 func (tl *TodoList) GetTodoItem(id int) *TodoItem {
 	tl.mu.RLock()
 	defer tl.mu.RUnlock()
+	if _, exists := tl.todos[id]; !exists {
+		return nil
+	}
 	return tl.todos[id]
 }
