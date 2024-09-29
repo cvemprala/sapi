@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"base/validator"
+	s "sapi/base"
 )
 
 type CreateTodoHandler struct{}
 
 func (h CreateTodoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var createRequest CreateTodoRequest
-	if err := validator.ValidateRequest(w, r, &createRequest); err != nil {
+	if err := s.ValidateRequest(w, r, &createRequest); err != nil {
 		return
 	}
 

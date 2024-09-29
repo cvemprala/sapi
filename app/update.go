@@ -2,11 +2,10 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
+	s "sapi/base"
 	"strconv"
-	"base/validator"
 )
 
 type UpdateTodoHandler struct{}
@@ -20,7 +19,7 @@ func (h UpdateTodoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var updateRequest UpdateTodoRequest
-	if err := validator.ValidateRequest(w, r, &updateRequest); err != nil {
+	if err := s.ValidateRequest(w, r, &updateRequest); err != nil {
 		return
 	}
 
