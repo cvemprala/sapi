@@ -6,7 +6,8 @@ class TestEndpoints(unittest.TestCase):
     def setUp(self):
         self.base_url = "http://localhost:8080/api/todos"
 
-    def test_create_todo(self):
+    def test_1(self):
+        print("Testing create_todo")
         payload = {
             "ID": 1,
             "Title": "Buy groceries",
@@ -19,12 +20,14 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()["Title"], "Buy groceries")
 
-    def test_get_todo(self):
+    def test_2(self):
+        print("Testing get_todo")
         response = requests.get(f"{self.base_url}/1")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["ID"], 1)
 
-    def test_update_todo(self):
+    def test_3(self):
+        print("Testing update_todo")
         payload = {
             "Title": "Buy groceries and more",
             "Description": "Milk, Bread, Eggs, and Butter",
@@ -36,7 +39,8 @@ class TestEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["Title"], "Buy groceries and more")
 
-    def test_delete_todo(self):
+    def test_4(self):
+        print("Testing delete_todo")
         response = requests.delete(f"{self.base_url}/1")
         self.assertEqual(response.status_code, 204)
 

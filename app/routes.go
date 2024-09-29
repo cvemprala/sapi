@@ -16,5 +16,8 @@ func routes(r *mux.Router) *mux.Router {
 	apiRouter.Handle("/{id}", updateTodo).Methods(http.MethodPut)
 	apiRouter.Handle("/{id}", deleteTodo).Methods(http.MethodDelete)
 	apiRouter.Handle("/{id}", getTodo).Methods(http.MethodGet)
+	r.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	}).Methods(http.MethodGet)
 	return r
 }
