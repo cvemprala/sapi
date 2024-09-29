@@ -6,7 +6,7 @@ To run the integration tests, you need to have Python installed on your system. 
 2. Run the following command to execute all the integration tests:
 
 ```sh
-python -m unittest discover -s integration
+pytest integration
 ```
 
 This command will discover and run all the integration tests in the `integration` folder.
@@ -14,7 +14,7 @@ This command will discover and run all the integration tests in the `integration
 To run a single integration test, use the following command:
 
 ```sh
-python -m unittest integration.test_endpoints.TestEndpoints.test_create_todo
+pytest integration/test_endpoints.py::TestEndpoints::test_create
 ```
 
-Replace `test_create_todo` with the name of the specific test method you want to run.
+Replace `test_create` with the name of the specific test method you want to run.

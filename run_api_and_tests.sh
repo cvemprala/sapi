@@ -20,7 +20,7 @@ echo "API is up and running"
 cd ..
 # Run the integration tests
 # print the output of the tests
-python -m unittest discover -s integration -v
+pytest integration -v
 
 # Kill the API process after the tests are completed
 kill $(pgrep sapi)
