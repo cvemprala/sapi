@@ -10,9 +10,18 @@ import (
 type CreateTodoHandler struct{}
 
 func (h CreateTodoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	var todo TodoItem
-	if err := validator.ValidateRequest(w, r, &todo); err != nil {
+	var createRequest CreateTodoRequest
+	if err := validator.ValidateRequest(w, r, &createRequest); err != nil {
 		return
+	}
+
+	todo := TodoItem{
+		ID:          len(todoList.todos) + 1,
+		Title:       createRequest.Title,
+		Description: createRequest.Description,
+		DueDate:     &createRequest.DueDate,
+		Priority:    createRequest.Priority,
+		Tags:        createRequest.Tags,
 	}
 
 	todoList.AddTodoItem(&todo)

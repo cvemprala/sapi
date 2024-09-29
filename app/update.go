@@ -19,14 +19,14 @@ func (h UpdateTodoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var todo TodoItem
-	if err := validator.ValidateRequest(w, r, &todo); err != nil {
+	var updateRequest UpdateTodoRequest
+	if err := validator.ValidateRequest(w, r, &updateRequest); err != nil {
 		return
 	}
 
-	todoList.UpdateTodoItem(id, todo.Title, todo.Description, todo.DueDate, todo.Priority, todo.Tags)
+	todoList.UpdateTodoItem(id, updateRequest.Title, updateRequest.Description, &updateRequest.DueDate, updateRequest.Priority, updateRequest.Tags)
 	w.WriteHeader(http.StatusOK)
-	_ = json.NewEncoder(w).Encode(todo)
+	_ = json.NewEncoder(w).Encode(updateRequest)
 }
 
 type DeleteTodoHandler struct{}

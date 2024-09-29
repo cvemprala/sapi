@@ -9,7 +9,6 @@ class TestEndpoints(unittest.TestCase):
     def test_1(self):
         print("Testing create_todo")
         payload = {
-            "ID": 1,
             "Title": "Buy groceries",
             "Description": "Milk, Bread, Eggs",
             "DueDate": "2023-12-31T23:59:59Z",
