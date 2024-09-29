@@ -2,9 +2,11 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
+	"base/validator"
 )
 
 type UpdateTodoHandler struct{}
@@ -18,8 +20,7 @@ func (h UpdateTodoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var todo TodoItem
-	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
-		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+	if err := validator.ValidateRequest(w, r, &todo); err != nil {
 		return
 	}
 

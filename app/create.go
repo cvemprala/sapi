@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"base/validator"
 )
 
 type CreateTodoHandler struct{}
 
 func (h CreateTodoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var todo TodoItem
-	if err := json.NewDecoder(r.Body).Decode(&todo); err != nil {
-		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+	if err := validator.ValidateRequest(w, r, &todo); err != nil {
 		return
 	}
 
